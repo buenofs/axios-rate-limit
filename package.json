@@ -29,7 +29,7 @@
     "dist"
   ],
   "scripts": {
-    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
     "build": "tsc",
     "watch": "yarn jest --watch",
     "test": "jest --forceExit --runInBand --coverage --detectOpenHandles && yarn lint && yarn spell",
