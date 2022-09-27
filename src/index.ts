@@ -18,7 +18,7 @@ function configWithMillisecondsAndMaxRequests(
 	return options.maxRequests !== undefined && options.perMilliseconds !== undefined;
 }
 
-export class AxiosRateLimit {
+class AxiosRateLimit {
 	private queue: { request: any; resolve(): void; reject(err: Error): void }[] = [];
 
 	private perMilliseconds: number;
@@ -194,7 +194,7 @@ export class AxiosRateLimit {
  * @param {Number} options.perMilliseconds amount of time to limit concurrent requests.
  * @returns {Object} axios instance with interceptors added
  */
-function axiosRateLimit(axios: AxiosInstance, options?: RateLimitOptions, store?: MemoryStore) {
+export = function axiosRateLimit(axios: AxiosInstance, options?: RateLimitOptions, store?: MemoryStore) {
 	const rateLimitInstance = new AxiosRateLimit(axios, options, store);
 	// eslint-disable-next-line no-param-reassign
 	axios.getMaxRPS = AxiosRateLimit.prototype.getMaxRPS.bind(rateLimitInstance);
@@ -205,9 +205,6 @@ function axiosRateLimit(axios: AxiosInstance, options?: RateLimitOptions, store?
 
 	return axios;
 }
-
-export default axiosRateLimit;
-
 declare module 'axios' {
 	// eslint-disable-next-line @typescript-eslint/naming-convention
 	interface AxiosInstance {

@@ -2,9 +2,9 @@
   "compilerOptions": {
     // target settings for node
     "module": "commonjs",
-    "target": "es2019",
+    "target": "es5",
 
-    "lib": ["es2019", "dom"],
+    "lib": ["es5", "dom"],
 
     // other best practice configs
     "moduleResolution": "node",
